@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Containers Plus",
+  "version": "0.0.1",
+
+  "description": "",
+  "icons": {
+    "48": "icons/browsers-48.png"
+  },
+  "applications": {
+    "gecko": {
+      "strict_min_version": "57.0"
+    }
+  },
+
+  "permissions": ["activeTab", "contextualIdentities", "cookies"],
+
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "icons/beasts-32.png",
+    "default_title": "Beastify",
+    "default_popup": "popup.html"
+  }
+}
