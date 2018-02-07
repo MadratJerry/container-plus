@@ -10,13 +10,13 @@ html {
 }
 
 body {
-  font-family: Roboto, Noto, 'San Francisco', Ubuntu, 'Segoe UI', 'Fira Sans', message-box, Arial, sans-serif;
+  font-family: Roboto, Noto, 'San Francisco', Ubuntu, 'Fira Sans', message-box, Arial, sans-serif;
   inline-size: 100px;
   max-inline-size: 100px;
 }
 
 #container-list {
-  --icon-size: 16px;
+  --icon-size: 15px;
   --size: 24px;
 }
 
@@ -32,6 +32,10 @@ body {
   height: var(--size);
   line-height: var(--size);
   padding: 0 4px;
+}
+
+#container-list li:last-child {
+  border-top: 1px #eee solid;
 }
 
 .icon {

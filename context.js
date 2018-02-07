@@ -21,6 +21,14 @@ class ContainerPlus {
     }
 
     const ul = document.createElement('ul')
+    identities.push({
+      name: 'No-contain',
+      icon: 'circle',
+      iconUrl: 'resource://usercontext-content/circle.svg',
+      color: 'gray',
+      colorCode: '#c0c0c0',
+      cookieStoreId: 'firefox-default',
+    })
     for (let identity of identities) {
       const li = document.createElement('li')
       li.onclick = () => handleClick(identity)
