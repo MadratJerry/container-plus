@@ -13,7 +13,7 @@
     }
   },
 
-  "permissions": ["activeTab", "contextualIdentities", "cookies"],
+  "permissions": ["activeTab", "contextualIdentities", "cookies", "tabs"],
 
   "browser_action": {
     "browser_style": true,
