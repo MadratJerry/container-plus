@@ -31,11 +31,20 @@ class ContainerPlus {
     })
     for (let identity of identities) {
       const li = document.createElement('li')
+      const iconContainer = document.createElement('div')
+      const icon = document.createElement('i')
+      const containerName = document.createElement('div')
+
+      iconContainer.className = 'icon'
+      icon.style.backgroundImage = `url(${identity.iconUrl})`
+      icon.style.filter = `drop-shadow(${identity.colorCode} var(--icon-size) 0)`
+      containerName.textContent = identity.name
+      containerName.className = 'container-name'
       li.onclick = () => handleClick(identity)
-      li.innerHTML = `<div class="icon">
-      <i style="background-image: url(${identity.iconUrl});
-      filter: drop-shadow(${identity.colorCode} var(--icon-size) 0);"></i></div>
-      <div class="container-name">${identity.name}</div>`
+
+      iconContainer.appendChild(icon)
+      li.appendChild(iconContainer)
+      li.appendChild(containerName)
       ul.appendChild(li)
     }
     list.appendChild(ul)
