@@ -24,12 +24,10 @@ class ContainerPlus {
     for (let identity of identities) {
       const li = document.createElement('li')
       li.onclick = () => handleClick(identity)
-      li.innerHTML = `<div
-        class="usercontext-icon"
-        data-identity-icon="${identity.icon}"
-        data-identity-color="${identity.color}"></div>
-        <div class="container-name truncate-text">${identity.name}</div>`
-      li.dataset.cookieStoreId = identity.cookieStoreId
+      li.innerHTML = `<div class="icon">
+      <i style="background-image: url(${identity.iconUrl});
+      filter: drop-shadow(${identity.colorCode} var(--icon-size) 0);"></i></div>
+      <div class="container-name">${identity.name}</div>`
       ul.appendChild(li)
     }
     list.appendChild(ul)
