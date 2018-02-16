@@ -5,10 +5,12 @@
 ## Feature
 
 1. Switch between containers damage fast.
+2. `Command + Click` open a new container tab.
 
 ## What's New
 
 * **0.0.1** Switch between containers.
+* **0.0.2** `Command + Click` open a new container tab, and improve the stability of fast switching.
 
 ## License
 
