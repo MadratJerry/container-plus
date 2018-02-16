@@ -34,7 +34,7 @@ async function init() {
     icon.style.filter = `drop-shadow(${identity.colorCode} var(--icon-size) 0)`
     containerName.textContent = identity.name
     containerName.className = 'container-name'
-    li.onclick = () => handleClick(identity)
+    li.onclick = e => handleClick(identity, e.getModifierState('Meta')).then(() => window.close())
 
     iconContainer.appendChild(icon)
     li.appendChild(iconContainer)
@@ -50,7 +50,12 @@ async function getCurrentTab() {
   return status === 'loading' && url === 'about:blank' ? await getCurrentTab() : currentTab
 }
 
-async function handleClick({ cookieStoreId }) {
+async function handleClick({ cookieStoreId }, isPressed) {
+  if (isPressed) {
+    await browser.tabs.create({ cookieStoreId })
+    return
+  }
+
   const currentTab = await this.getCurrentTab()
   const { id, url, index, pinned } = currentTab
 
