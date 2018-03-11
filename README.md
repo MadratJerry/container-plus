@@ -4,13 +4,14 @@
 
 ## Feature
 
-1. Switch between containers damage fast.
-2. `Command + Click` open a new container tab.
+1.  Switch between containers damage fast.
+2.  `Command(Meta) + Click`(Mac, Linux) or `Windows + Click`(Windows) open a new container tab.
 
 ## What's New
 
 * **0.0.1** Switch between containers.
 * **0.0.2** `Command + Click` open a new container tab, and improve the stability of fast switching.
+* **0.0.3** Support `Windows + Click` open a new container tab, and prevent multiple clicks while waiting for a switch.
 
 ## License
 

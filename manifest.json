@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "Container Plus",
-  "version": "0.0.2",
+  "version": "0.0.3",
 
-  "description": "",
+  "description": "A WebExt-based Firefox extension which help you use multi account containers efficiently.",
   "icons": {
     "48": "icons/container.svg"
   },
