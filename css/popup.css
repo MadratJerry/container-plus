@@ -20,7 +20,16 @@ body {
   --size: 24px;
 }
 
-#container-list li:hover {
+#container-list ul {
+  cursor: pointer;
+}
+
+#container-list ul.disabled {
+  cursor: wait;
+}
+
+#container-list ul:not(.disabled) li:hover,
+#container-list li.clicked {
   background: #eee;
 }
 

@@ -23,7 +23,7 @@ async function init() {
     colorCode: '#c0c0c0',
     cookieStoreId: 'firefox-default',
   })
-  for (let identity of identities) {
+  identities.forEach((identity, index) => {
     const li = document.createElement('li')
     const iconContainer = document.createElement('div')
     const icon = document.createElement('i')
@@ -34,17 +34,28 @@ async function init() {
     icon.style.filter = `drop-shadow(${identity.colorCode} var(--icon-size) 0)`
     containerName.textContent = identity.name
     containerName.className = 'container-name'
-    li.onclick = e => handleClick(identity, e.getModifierState('Meta')).then(() => window.close())
-
+    li.dataset.index = index
     iconContainer.appendChild(icon)
     li.appendChild(iconContainer)
     li.appendChild(containerName)
     ul.appendChild(li)
-  }
+  })
+  ul.addEventListener('click', function(e) {
+    e.stopPropagation()
+    const li = e.target.parentNode
+    const identity = identities[li.dataset.index]
+    li.className = 'clicked'
+    ul.className = 'disabled'
+    ul.removeEventListener('click', arguments.callee)
+    handleClick(identity, ['Meta', 'OS'].reduce((pre, cur) => pre || e.getModifierState(cur), false)).then(() =>
+      window.close(),
+    )
+  })
   list.appendChild(ul)
 }
 
 async function getCurrentTab() {
+  await new Promise(resolve => setTimeout(resolve, 100))
   const [currentTab] = await browser.tabs.query({ currentWindow: true, active: true })
   const { status, url } = currentTab
   return status === 'loading' && url === 'about:blank' ? await getCurrentTab() : currentTab
@@ -61,12 +72,16 @@ async function handleClick({ cookieStoreId }, isPressed) {
 
   if (currentTab.cookieStoreId === cookieStoreId) return
 
-  const newTab = await browser.tabs.create({
-    url,
-    cookieStoreId,
-    index: index + 1,
-    pinned,
-  })
+  try {
+    const newTab = await browser.tabs.create({
+      url,
+      cookieStoreId,
+      index: index + 1,
+      pinned,
+    })
+  } catch (error) {
+    await browser.tabs.create({ cookieStoreId, index: index + 1, pinned })
+  }
   browser.tabs.remove(id)
 }
 
